@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
 //routes
 app.use('/api/user',userRouter)
 
