@@ -161,3 +161,12 @@ exports.signin= async (req,res, next) =>{
         token: token
     });
 }
+
+exports.signOut = (req,res) =>{
+    res.clearCookie('token');
+    res.json(
+        {
+            message: 'Signed out successfully'
+        }
+    );
+}
