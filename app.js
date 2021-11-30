@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-const userRouter = require('./routes/user');
+const authRouter = require('./routes/auth');
 
 require('dotenv').config()
 const app = express();
@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 
 //routes
-app.use('/api/user',userRouter)
+app.use('/api/auth',authRouter)
 
 
 mongoose.connect(process.env.CONNECTION_URL)

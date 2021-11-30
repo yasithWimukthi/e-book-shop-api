@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/user');
+const Auth = require('../models/user');
 const HttpError = require('../models/http-error');
 
 exports.signup = async (req,res, next) => {
@@ -18,7 +18,7 @@ exports.signup = async (req,res, next) => {
 
     let existingUser;
     try {
-        existingUser = await User.findOne({ email: email });
+        existingUser = await Auth.findOne({ email: email });
     } catch (err) {
         const error = new HttpError(
             'Signing up failed, please try again later.' ,
@@ -46,7 +46,7 @@ exports.signup = async (req,res, next) => {
         return next(error);
     }
 
-    const createdUser = new User({
+    const createdUser = new Auth({
         name,
         email,
         password : hashedPassword,
@@ -98,7 +98,7 @@ exports.signin= async (req,res, next) =>{
     let existingUser;
 
     try {
-        existingUser = await User.findOne({ email: email });
+        existingUser = await Auth.findOne({ email: email });
     } catch (err) {
         const error = new HttpError(
             'Logging in failed, please try again later.',
