@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
 
 const User = require('../models/user');
 const HttpError = require('../models/http-error');
@@ -71,7 +70,7 @@ exports.signup = async (req,res, next) => {
     try {
         token = jwt.sign(
             { userId: createdUser.id, email: createdUser.email },
-            'supersecret_dont_share',
+            "supersecret_dont_share",
             { expiresIn: '1h' }
         );
     } catch (err) {
@@ -140,7 +139,7 @@ exports.signin= async (req,res, next) =>{
     try {
         token = jwt.sign(
             { userId: existingUser.id, email: existingUser.email },
-            'supersecret_dont_share',
+            "supersecret_dont_share",
             { expiresIn: '1h' }
         );
         // persist token as cookie
